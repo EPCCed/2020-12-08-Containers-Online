@@ -1,11 +1,7 @@
 # Reproducible computational environments using containers: Introduction to Docker
 
-[![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
-
 This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
 
-If you are interested in Singularity as opposed to Docker, see the Singularity lesson in the Carpentries Incubator: 
-* [Reproducible Computational Environments Using Containers: Introduction to Singularity](https://github.com/carpentries-incubator/singularity-introduction)
 
 ## Contributing
 
