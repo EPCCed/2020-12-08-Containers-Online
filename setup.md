@@ -103,34 +103,31 @@ If you are already registered on the ARCHER or Tier-2 SAFE you do not need to re
 
 ### 4.3 Sign up for an account on ARCHER2 through SAFE
 
+In addition to your password, you will need an SSH key pair to access ARCHER2. There is useful guidance on how
+to generate SSH key pairs in [the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-key-pairs).
+It is useful to have your SSH key pair generated before you request an account on ARCHER2 as you can add it when 
+you request the account
+
 1. [Login to SAFE](https://safe.epcc.ed.ac.uk)
 2. Go to the Menu "Login accounts" and select "Request login account"
 3. Choose the `ta007` project “Choose Project for Machine Account” box and click "Next"
-4. On the next page, the ARCHER2 system should be selected. Click "Next"
-5. Enter the username you would prefer to use on ARCHER2. Every username must be unique, so if your chosen name is taken, you will need to choose another
+4.  Select the *ARCHER2* machine in the list of available machines
+5.  Click *Next*
+6.  Enter a username for the account and an SSH public
+    key
+    1.  If you do not specify an SSH key at this stage, your default
+        key will be used (if you have one). For users who had an ARCHER
+        account, the default key will be your ARCHER SSH key.
+    2.  You can always add an SSH key (or additional SSH keys) using
+        the process described below.
+7.  Click *Request*
 
 Now you have to wait for the course organiser to accept your request to register. When this has happened, your account will be created on ARCHER2.
 Once this has been done, you should be sent an email. _If you have not received an email but believe that your account should have been activated, check your account status in SAFE which will also show when the account has been activated._ You can then pick up your one shot initial password for ARCHER2 from your SAFE account.
 
-### 4.4 Generate an SSH key pair and upload it to SAFE
+### 4.4 Log into ARCHER2
 
-In addition to your password, you will need an SSH key pair to access ARCHER2. There is useful guidance on how
-to generate SSH key pairs in [the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-key-pairs).
-
-Once you have generated your key pair, you need to add the public part to your ARCHER2 account in SAFE:
-
-1. [Login to SAFE](https://safe.epcc.ed.ac.uk)
-2. Go to the Menu “Login accounts” and select the ARCHER2 account you want to add the SSH key to
-3. On the subsequent Login account details page click the “Add Credential” button
-4. Select “SSH public key” as the Credential Type and click “Next”
-5. Either copy and paste the public part of your SSH key into the “SSH Public key” box or use the button to select the public key file on your computer.
-6. Click “Add” to associate the public SSH key part with your account
-
-The public SSH key part will now be added to your login account on the ARCHER2 system.
-
-### 4.5 Log into ARCHER2
-
-You should now be able to log into Cirrus by following the [login instructions in the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-clients).
+You should now be able to log into ARCHER2 by following the [login instructions in the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-clients).
 
 ## (Optional) Install Singularity on your local system
 
