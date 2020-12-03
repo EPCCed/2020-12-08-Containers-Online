@@ -1,7 +1,7 @@
 ---
 title: "Working with Singularity containers"
 teaching: 30
-exercises: 20
+exercises: 25
 questions:
 - "How do I run a shell or different commands within a container?"
 - "Where does Singularity store images?"

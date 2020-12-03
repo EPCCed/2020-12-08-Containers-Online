@@ -1,7 +1,7 @@
 ---
 title: "Running MPI parallel jobs using Singularity containers"
 teaching: 30
-exercises: 40
+exercises: 30
 questions:
 # - "Can I run MPI parallel codes from Singularity containers on a local/institutional/national HPC platform?"
 - "How do I set up and run an MPI job from a Singularity container?"
