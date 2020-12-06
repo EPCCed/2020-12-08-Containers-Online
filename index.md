@@ -14,7 +14,7 @@ enddate: 2020-12-09
 instructor: ["Andy Turner", "Jeremy Cohen"]
 helper: []
 email: ["support@archer2.ac.uk"]
-collaborative_notes: https://pad.archer2.ac.uk/p/2020-12-08-Containers-Online
+collaborative_notes: https://pad.archer2.ac.uk/p/201208-Containers
 ---
 <h2>Description</h2>
 
@@ -37,13 +37,11 @@ This course aims to introduce the use of containers with the goal of using them 
   can use https://itouchmap.com/latlong.html to find the lat/long of an
   address.
 {% endcomment %}
-{% if page.latlng %}
 <p id="where">
   <strong>Where:</strong>
   This course will be taught online via Blackboard Collaborate. All attendees will
   be sent the joining link prior to the event.
 </p>
-{% endif %}
 
 {% comment %}
   DATE
@@ -130,6 +128,13 @@ This course aims to introduce the use of containers with the goal of using them 
 facility we will be using for the Singularity part of the course).</p>
 
 <hr/>
+
+<h2>Collaborative Document</h2>
+
+During the course, we will make use of a collaborative document known as an *Etherpad*. You
+can find the document at:
+
+ - [Course Etherpad](https://pad.archer2.ac.uk/p/201208-Containers)
 
 
 {% include links.md %}
