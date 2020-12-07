@@ -7,8 +7,7 @@ Please seek help at the start of the lesson if you have not been able to establi
 
 ### Files to download
 
-Download the `docker-intro.zip` file from the main GitHub repository page: 
-[Docker Introduction Github](https://github.com/carpentries-incubator/docker-introduction/). 
+Download the [`docker-intro.zip`](/files/docker-intro.zip). _This file can alternatively be downloaded from the `files` directory in the [course GitHub repository](https://github.com/EPCCed/2020-12-08-Containers-Online)._
 
 Move the downloaded file to your Desktop and unzip it. It should unzip to a folder called `docker-intro`. 
 
