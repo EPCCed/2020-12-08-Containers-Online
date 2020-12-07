@@ -1,8 +1,8 @@
 ---
 title: "Introducing Containers"
 start: true
-teaching: 20
-exercises: 0
+teaching: 15
+exercises: 5
 questions:
 - "What are containers, and why might they be useful to me?"
 objectives:
@@ -58,7 +58,7 @@ informally termed "dependency hell".
 > Again, take a minute to think about how the software challenges we've discussed 
 > could impact (or have impacted!) the quality of your work. 
 > Share your thoughts with your neighbors. What can go wrong if our software 
-> doesnt work? 
+> doesn't work? 
 {: .challenge}
 
 Unsurprisingly, software installation and configuration challenges can have 
@@ -75,7 +75,7 @@ and access to resources such as files and communications networks in a uniform m
 
 Docker is a tool that allows you to build what are called "containers." It's 
 not the only tool that can create containers, but is the one we've chosen for 
-this workshop. But what *is* a container? 
+this part of the workshop. But what *is* a container? 
 
 To understand containers, let's first talk briefly about your computer. 
 
@@ -91,14 +91,14 @@ files. These all
 live in what's called the file system. Everything on your computer - programs, 
 pictures, documents - lives somewhere in the file system. One way to think of 
 the file system is the layer of stuff that can be activated to use use the CPU, memory and hard 
-drive of your computer. 
+drive of your computer.
 
 NOW, imagine you wanted to have a second computer. You don't want to buy a 
 whole new computer because it's too expensive. What if, instead, you could have 
-another filesystem that you could store and access from your main computer, 
+another file system that you could store and access from your main computer, 
 but that is self-contained? 
 
- A container system (like Docker) is a special program 
+A container system (like Docker) is a special program 
 on your computer that does this. 
 The term "container" can be usefully considered with reference to shipping 
 containers. Before shipping containers were developed, packing and unpacking 
@@ -121,7 +121,7 @@ the packaging of a complete software system:
 > kernel and simply has some flavor of Linux + the file system inside. 
 {: .callout}
 
-One final term: if the container is an alternative file system layer that you 
+One final term: if the *container* is an alternative file system layer that you 
 can access and run from your computer, the **container image** is like a template 
 for that container. The container image has all the needed information to start 
 up a running copy of the container. A running container tends to be transient 
@@ -130,7 +130,6 @@ You could think of the container image like a cookie cutter -- it
 can be used to create multiple copies of the same shape (or container) 
 and is relatively unchanging, where cookies come and go. If you want a 
 different type of container (cookie) you need a different image (cookie cutter).
-
 
 ### Putting the Pieces Together
 
