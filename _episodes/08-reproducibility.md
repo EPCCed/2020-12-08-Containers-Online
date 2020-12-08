@@ -79,6 +79,12 @@ In addition to the archive file itself, the deposit process will ask you to prov
 
 Note that Zenodo is not the only option for archiving and generating persistent DOIs for images. There are other services out there - for example, some organizations may provide their own, equivalent, service.
 
+> ## Restoring the image from a save
+> Unsurprisingly, the command `docker load alpine-python.tar.gz` would be used to load
+> the saved container and make it available to be used on your system. Note that the 
+> command can restore the compressed container directly without the need to uncompress
+> first. 
+
 ## Reproducibility good practice
 
    - Make use of images to capture the computational environment required for your work.
@@ -104,6 +110,7 @@ Of course, many real applications will sit somewhere between these two extremes.
 > and write a few bullet points for advantages and disadvantages for each approach in the course Etherpad.
 > > ## Solution
 > > This is not an exhaustive list but some of the advantages and disadvantages could be:
+> >
 > > ### Single large container:
 > > - Advantages:
 > >   + Simpler to document
@@ -116,7 +123,8 @@ Of course, many real applications will sit somewhere between these two extremes.
 > >   + May end up with same dependency issues within the container from different software requirements
 > >   + Potentially more complex to test
 > >   + Less re-useable for different, but related, work
-> > ### Multiple smaller containers
+> >
+> > ### Multiple smaller containers:
 > > - Advantages:
 > >   + Individual components can be re-used for different, but related, work
 > >   + Individual parts are smaller in size making them easier to distribute

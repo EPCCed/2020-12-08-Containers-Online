@@ -177,15 +177,19 @@ $ /Users/yourname/Desktop/docker-intro/sum
 ~~~
 {: .language-bash}
 
-Take a look at the Dockerfile. It looks similar to the one we used before, but
-it has an additional line with the `COPY` keyword.
+We will modify our Dockerfile again to build an image based on Alpine Linux with
+Python 3 installed (just as we did perviously). This time we will add an additional
+line before the `CMD` line:
 
 ~~~
 COPY sum.py /home
 ~~~
+{: .language-docker}
 
 This line will cause Docker to copy the file from your computer into the container's
-file system. Let's build the container like before, but give it a different name:
+file system *at build time*. Modify the Dockerfile as before (or copy the version from
+the `basic/` subdirectory) and add the extra copy line. Once you have done that, build
+the container like before, but give it a different name:
 
 ~~~
 $ docker build -t alice/alpine-sum .
