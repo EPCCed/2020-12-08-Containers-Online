@@ -1,7 +1,7 @@
 ---
 title: "Working with Singularity containers"
 teaching: 30
-exercises: 20
+exercises: 25
 questions:
 - "How do I run a shell or different commands within a container?"
 - "Where does Singularity store images?"
@@ -71,6 +71,33 @@ This provides us with some more useful information about the actual images store
 >
 > You can also remove specific images or all images of a particular type. Look at the output of `singularity cache clean --help` for more information.
 {: .callout}
+
+> ## Basic exercise: Clearing specific image types from the cache
+>
+> What command would you use to remove _only_ images of type **shub** from your local Singularity image cache?
+> 
+> How could you test this safely to ensure your command is going to do the right thing?
+> 
+> > ## Solution
+> >
+> > ~~~
+> > $ singularity cache clean --type=shub
+> > ~~~
+> > {: .language-bash}
+> > 
+> > ~~~
+> > $ singularity cache clean -n --type=shub
+> > ~~~
+> > {: .language-bash}
+> > 
+> > ~~~
+> > Removing /<cache_dir>/.singularity/cache/shub
+> > ~~~
+> > {: .output}
+> > 
+> {: .solution}
+{: .challenge}
+
 
 ## Working with containers
 
@@ -192,7 +219,7 @@ Host system:                                                      Singularity co
 >
 > > ## Answers
 > >
-> > **A1:** Use the `ls -l` command to see a detailed file listing including file ownership and permission details. You should see that all the files are owned by you. This looks good - you should be ready to edit something in the exercise that follows...
+> > **A1:** Use the `ls -l` command to see a detailed file listing including file ownership and permission details. You may see that all the files are owned by you, alternatively, most files in the root (`/`) directory may be owned by the `root` user. If the files are owned by you, this looks good - you should be ready to edit something in the exercise that follows...otherwise, if the files are owned by root, maybe not...
 > >
 > > **A Ex1:** Unfortunately, it's not so easy, depending on how you tried to edit `/rawr.sh` you probably saw an error similar to the following: `Can't open file for writing` or `Read-only file system`
 > > 
@@ -206,55 +233,56 @@ Singularity can also start containers from Docker images, opening up access to a
 
 While Singularity doesn't support running Docker images directly, it can pull them from Docker Hub and convert them into a suitable format for running via Singularity. When you pull a Docker image, Singularity pulls the slices or _layers_ that make up the Docker image and converts them into a single-file Singularity SIF image.
 
-For example, moving on from the simple _Hello World_ examples that we've looked at so far, let's pull one of the [official Docker Python images](https://hub.docker.com/_/python). We'll use the image with the tag `3.8.2-slim-buster` which has Python 3.8.2 installed on Debian's [Buster](https://www.debian.org/releases/buster/) (v10) Linux distribution:
+For example, moving on from the simple _Hello World_ examples that we've looked at so far, let's pull one of the [official Docker Python images](https://hub.docker.com/_/python). We'll use the image with the tag `3.8.6-slim-buster` which has Python 3.8.6 installed on Debian's [Buster](https://www.debian.org/releases/buster/) (v10) Linux distribution:
 
 ~~~
-$ singularity pull python-3.8.2.sif docker://python:3.8.2-slim-buster
+$ singularity pull python-3.8.6.sif docker://python:3.8.6-slim-buster
 ~~~
 {: .language-bash}
 
 ~~~
 INFO:    Converting OCI blobs to SIF format
 INFO:    Starting build...
-Copying blob 54fec2fa59d0 done
-Copying blob cd3f35d84cab done
-Copying blob a0afc8e92ef0 done
-Copying blob 9691f23efdb7 done
-Copying blob 6512e60b314b done
-Copying config 1c498e093b done
+Getting image source signatures
+Copying blob 852e50cd189d done
+Copying blob 334ed303e4ad done
+Copying blob a687a65725ea done
+Copying blob fe607cb30fbe done
+Copying blob b8a3bc0a3645 done
+Copying config 08d8e312de done
 Writing manifest to image destination
 Storing signatures
-2020/07/03 11:16:22  info unpack layer: sha256:54fec2fa59d0a0de9cd2dec9850b36c43de451f1fd1c0a5bf8f1cf26a61a5da4
-2020/07/03 11:16:24  info unpack layer: sha256:cd3f35d84caba5a287676eeaea3d371e1ed5af8c57c33532228a456e0505b2d5
-2020/07/03 11:16:24  info unpack layer: sha256:a0afc8e92ef0f5e56ddda03f8af40a4396226443a446e457ab6ed2dcdec62619
-2020/07/03 11:16:25  info unpack layer: sha256:9691f23efdb7fd2829d06ad8fb9c8338487c183bb1aefa0d737cece2a612f51b
-2020/07/03 11:16:25  info unpack layer: sha256:6512e60b314b980bce8ece057d15292db0f50ca12dbe6dd5752e1e54c64ccca2
+2020/12/07 18:36:18  info unpack layer: sha256:852e50cd189dfeb54d97680d9fa6bed21a6d7d18cfb56d6abfe2de9d7f173795
+2020/12/07 18:36:19  info unpack layer: sha256:334ed303e4ad2f8dc872f2e845d79012ad648eaced444e009ae9a397cc4b4dbb
+2020/12/07 18:36:19  info unpack layer: sha256:a687a65725ea883366a61d24db0f946ad384aea893297d9510e50fa13f565539
+2020/12/07 18:36:19  info unpack layer: sha256:fe607cb30fbe1148b5885d58c909d0c08cbf2c0848cc871845112f3ee0a0f9ba
+2020/12/07 18:36:19  info unpack layer: sha256:b8a3bc0a3645e2afcd8807830833a0df0bd243d58d518e17b2335342e2614bd3
 INFO:    Creating SIF file...
-INFO:    Build complete: python-3.8.2.sif
+INFO:    Build complete: python-3.8.6.sif
 ~~~
 {: .output}
 
-Note how we see singularity saying that it's "_Converting OCI blobs to SIF format_". We then see the layers of the Docker image being downloaded and unpacked and written into a single SIF file. Once the process is complete, we should see the python-3.8.2.sif image file in the current directory.
+Note how we see singularity saying that it's "_Converting OCI blobs to SIF format_". We then see the layers of the Docker image being downloaded and unpacked and written into a single SIF file. Once the process is complete, we should see the python-3.8.6.sif image file in the current directory.
 
 We can now run a container from this image as we would with any other singularity image.
 
-> ## Running the Python 3.8.2 image that we just pulled from Docker Hub
+> ## Running the Python 3.8.6 image that we just pulled from Docker Hub
 >
-> Try running the Python 3.8.2 image. What happens?
+> Try running the Python 3.8.6 image. What happens?
 > 
 > Try running some simple Python statements...
 > 
-> > ## Running the Python 3.8.2 image
+> > ## Running the Python 3.8.6 image
 > >
 > > ~~~
-> > $ singularity run python-3.8.2.sif
+> > $ singularity run python-3.8.6.sif
 > > ~~~
 > > {: .language-bash}
 > > 
 > > This should put you straight into a Python interactive shell within the running container:
 > > 
 > > ~~~
-> > Python 3.8.2 (default, Apr 23 2020, 14:32:57)
+> > Python 3.8.6 (default, Nov 25 2020, 02:47:44) 
 > > [GCC 8.3.0] on linux
 > > Type "help", "copyright", "credits" or "license" for more information.
 > > >>> 
@@ -274,16 +302,16 @@ In addition to running a container and having it run the default run script, you
 
 > ## Open a shell within a Python container
 >
-> Try to run a shell within a singularity container based on the `python-3.8.2.sif` image. That is, run a container that opens a shell rather than the default Python interactive console as we saw above.
-> See if you can find more than one way to achieve this.
+> Try to run a shell within a singularity container based on the `python-3.8.6.sif` image. That is, run a container that opens a shell rather than the default Python interactive console as we saw above.
+> Can you find more than one way to achieve this?
 > 
 > Within the shell, try starting the Python interactive console and running some Python commands.
 > 
 > > ## Solution
 > >
-> > Recall from the earlier material that we can use the `singularity shell` command to open a shell within a container. To open a regular shell within a container based on the `python-3.8.2.sif` image, we can therefore simply run:
+> > Recall from the earlier material that we can use the `singularity shell` command to open a shell within a container. To open a regular shell within a container based on the `python-3.8.6.sif` image, we can therefore simply run:
 > > ~~~
-> > $ singularity shell python-3.8.2.sif
+> > $ singularity shell python-3.8.6.sif
 > > ~~~
 > > {: .language-bash}
 > > 
@@ -301,7 +329,7 @@ In addition to running a container and having it run the default run script, you
 > > It is also possible to use the `singularity exec` command to run an executable within a container. We could, therefore, use the `exec` command to run `/bin/bash`:
 > > 
 > > ~~~
-> > $ singularity exec python-3.8.2.sif /bin/bash
+> > $ singularity exec python-3.8.6.sif /bin/bash
 > > ~~~
 > > {: .language-bash}
 > > 

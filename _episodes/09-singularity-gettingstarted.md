@@ -15,7 +15,7 @@ keypoints:
 - "The `singularity` command can be used to pull images from Singularity Hub and run a container from an image file."
 ---
 
-The episodes in this lesson will introduce you to the [Singularity](https://sylabs.io/singularity/) container platform and demonstrating how to set up and use Singularity.
+The episodes in this lesson will introduce you to the [Singularity](https://sylabs.io/singularity/) container platform and demonstrate how to set up and use Singularity.
 
 This material is split into 2 parts:
 
@@ -42,24 +42,17 @@ This material is split into 2 parts:
 System administrators will not, generally, install Docker on shared computing platforms such as lab desktops, research clusters or HPC platforms because the design of Docker presents potential security issues for shared platforms with multiple users. Singularity, on the other hand, can be run by end-users entirely within "user space", that is, no special administrative privileges need to be assigned to a user in order for them to run and interact with containers on a platform where Singularity has been installed.
 
 ## Getting started with Singularity
-Initially developed within the research community, Singularity is open source and the [repository](https://github.com/hpcng/singularity) is currently available in the "[The Next Generation of High Performance Computing](https://github.com/hpcng)" GitHub organisation. Part I of the Singularity material is intended to be undertaken on a remote platform where Singularity has been pre-installed. 
+Initially developed within the research community, Singularity is open source and the [repository](https://github.com/hpcng/singularity) is currently available in the "[The Next Generation of High Performance Computing](https://github.com/hpcng)" GitHub organisation. Part I of this Singularity material is intended to be undertaken on a remote platform where Singularity has been pre-installed. 
 
 _If you're attending a taught version of this course, you will be provided with access details for a remote platform made available to you for use for Part I of the Singularity material. This platform will have the Singularity software pre-installed._
 
 > ## Installing Singularity on your own laptop/desktop
-> If you have a Linux system on which you have administrator access and you would like to install Singularity on this system, some information is provided at the start of [Part II of the Singularity material]({{ page.root }}/11-singularity-images/).
+> If you have a Linux system on which you have administrator access and you would like to install Singularity locally on this system, some information is provided in [Part II of the Singularity material]({{ page.root }}/11-singularity-images/#installing-singularity-on-your-local-system-optional-advanced-task).
 {: .callout}
+
+**Check that Singularity is available**
 
 Sign in to the remote platform, with Singularity installed, that you've been provided with access to. Check that the `singularity` command is available in your terminal:
-
-> ## Loading a module
-> HPC systems often use *modules* to provide access to software on the system so you may need to use the command:
-> ~~~
-> $ module load singularity
-> ~~~
-> {: .language-bash}
-> before you can use the `singularity` command on the system.
-{: .callout}
 
 ~~~
 $ singularity --version
@@ -67,11 +60,21 @@ $ singularity --version
 {: .language-bash}
 
 ~~~
-singularity version 3.5.3
+singularity version 3.7.0
 ~~~
 {: .output}
 
-Depending on the version of Singularity installed on your system, you may see a different version. At the time of writing, `v3.5.3` is the latest release of Singularity.
+Depending on the version of Singularity installed on your system, you may see a different version. At the time of writing, `v3.7.0` is the latest release of Singularity.
+
+> ## Singularity on HPC systems: Loading a module
+> HPC systems often use *modules* to provide access to software on the system. If you get a command not found error (e.g. `bash: singularity: command not found` or similar) you may need to load the _singularity module_ before you can use the `singularity` command:
+> ~~~
+> $ module load singularity
+> ~~~
+> {: .language-bash}
+> 
+{: .callout}
+
 
 ## Images and containers
 
