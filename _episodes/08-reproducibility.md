@@ -84,6 +84,7 @@ Note that Zenodo is not the only option for archiving and generating persistent 
 > the saved container and make it available to be used on your system. Note that the 
 > command can restore the compressed container directly without the need to uncompress
 > first. 
+> {: .callout}
 
 ## Reproducibility good practice
 
