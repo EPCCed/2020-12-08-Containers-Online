@@ -40,11 +40,11 @@ container.
 
 If we try running the container and Python script, what happens?
 ~~~
-$ docker run alice/alpine-python python sum.py
+$ docker run alice/alpine-python python3 sum.py
 ~~~
 {: .language-bash}
 ~~~
-python: can't open file 'sum.py': [Errno 2] No such file or directory
+python3: can't open file 'sum.py': [Errno 2] No such file or directory
 ~~~
 {: .output}
 
@@ -76,13 +76,13 @@ container, name the directory `/temp`
 
 Let's try running the command now:
 ~~~
-$ docker run -v $PWD:/temp alice/alpine-python python sum.py
+$ docker run -v $PWD:/temp alice/alpine-python python3 sum.py
 ~~~
 {: .language-bash}
 
 But we get the same error!
 ~~~
-python: can't open file 'sum.py': [Errno 2] No such file or directory
+python3: can't open file 'sum.py': [Errno 2] No such file or directory
 ~~~
 {: .output}
 
@@ -92,7 +92,7 @@ mapped to `/temp` -- so we need to include that in the path to the script. This
 command should give us what we need:
 
 ~~~
-$ docker run -v $PWD:/temp alice/alpine-python python /temp/sum.py
+$ docker run -v $PWD:/temp alice/alpine-python python3 /temp/sum.py
 ~~~
 {: .language-bash}
 
@@ -107,8 +107,8 @@ and will stay there even when the container stops.
 >
 > > ## Solution
 > >
-> > This script comes from [the Python Wiki](https://wiki.python.org/moin/SimplePrograms) > > and is set to add all numbers
-> > that are passed to it as arguments.
+> > This script comes from [the Python Wiki](https://wiki.python.org/moin/SimplePrograms) 
+> > and is set to add all numbers that are passed to it as arguments.
 > {: .solution}
 {: .challenge}
 
@@ -126,10 +126,10 @@ and will stay there even when the container stops.
 > > - `-v $PWD:/temp`: connect my current working directory (`$PWD`) as a folder
 > > inside the container called `/temp`
 > > - `alice/alpine-python`: name of the container to run
-> > - `python /temp/sum.py`: what commands to run in the container
+> > - `python3 /temp/sum.py`: what commands to run in the container
 > >
 > > More generally, every Docker command will have the form:
-> > `docker [action] [docker options] [docker image] [command to run inside]
+> > `docker [action] [docker options] [docker image] [command to run inside]`
 > >
 > {: .solution}
 {: .challenge}
@@ -207,7 +207,7 @@ $ docker build -t alice/alpine-sum .
 > >
 > > You should be able to run the python command inside the container like this:
 > > ~~~
-> > /# python /home/sum.py
+> > /# python3 /home/sum.py
 > > ~~~
 > > {: .language-bash}
 > >
@@ -242,7 +242,7 @@ the screen. The bigger your image becomes, the harder it will be to easily downl
 >
 {: .callout}
 
-## More fancy `Dockerfile` options (optional, for presentation or as exercises)
+## More fancy `Dockerfile` options
 
 We can expand on the example above to make our container even more "automatic".
 Here are some ideas:
@@ -256,9 +256,9 @@ COPY sum.py /home
 RUN apk add --update python py-pip python-dev
 
 # Run the sum.py script as the default command
-CMD python /home/sum.py
+CMD python3 /home/sum.py
 # OR
-# CMD ["python", "/home/sum.py"]
+# CMD ["python3", "/home/sum.py"]
 ~~~
 
 Build and test it:
@@ -274,11 +274,11 @@ $ docker run alpine-sum:v1
 FROM alpine
 
 COPY sum.py /home
-RUN apk add --update python py-pip python-dev
+RUN apk add --update python3 py3-pip python3-dev
 
 # Run the sum.py script as the default command and
 # allow people to enter arguments for it
-ENTRYPOINT ["python", "/home/sum.py"]
+ENTRYPOINT ["python3", "/home/sum.py"]
 ~~~
 
 Build and test it:

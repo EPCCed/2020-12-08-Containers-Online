@@ -228,6 +228,7 @@ your software, as a bigger image means longer download times to use.
     - Ubuntu: `apt` or `apt-get`
     - Debian: `deb`
     - CentOS: `yum`
+  
   Most common software installations are available to be installed via these tools.
   Searching for "install X on Y Linux" is always a good start for common software
   installations; if something isn't available via the Linux distribution's installation
@@ -272,7 +273,8 @@ In a web browser, open <https://hub.docker.com>, and on your user page you shoul
 
 ## What's in a name? (again)
 
-You don't *have* to name your containers using the `USERNAME/CONTAINER:TAG` naming> scheme. On your own computer, you can call containers whatever you want and refer to
+You don't *have* to name your containers using the `USERNAME/CONTAINER:TAG` naming 
+scheme. On your own computer, you can call containers whatever you want and refer to
 them by the names you choose. It's only when you want to share a container that it
 needs the correct naming format.
 
