@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+%files
+    /home/singularity/osu-micro-benchmarks-5.6.3.tar.gz /root/
+    /home/singularity/mpich-3.3.2.tar.gz /root/
+
+%environment
+    export SINGULARITY_MPICH_DIR=/usr
+
+%post
+    apt -y update && DEBIAN_FRONTEND=noninteractive apt -y install build-essential libfabric-dev libibverbs-dev gfortran
+    cd /root
+    tar zxvf mpich-3.3.2.tar.gz && cd mpich-3.3.2
+    echo "Configuring and building MPICH..."
+    ./configure --prefix=/usr --with-device=ch3:nemesis:ofi && make -j2 && make install
+    cd /root
+    tar zxvf osu-micro-benchmarks-5.6.3.tar.gz
+    cd osu-micro-benchmarks-5.6.3/
+    echo "Configuring and building OSU Micro-Benchmarks..."
+    ./configure --prefix=/usr/local/osu CC=/usr/bin/mpicc CXX=/usr/bin/mpicxx
+    make -j2 && make install
+
+%runscript
+    echo "Rank ${PMI_RANK} - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*"
+    exec /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*
+
