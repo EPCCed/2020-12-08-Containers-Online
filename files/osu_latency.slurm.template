@@ -4,10 +4,8 @@
 #SBATCH --job-name=[* ENTER YOUR JOB NAME HERE *] 
 #SBATCH --time=0:10:0
 #SBATCH --nodes=2
-#SBATCH --ntasks=2
 #SBATCH --tasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --exclusive
 
 # Replace [budget code] below with your budget code (e.g. t01)
 #SBATCH --account=[* ENTER YOUR BUDGET CODE HERE *]
@@ -24,4 +22,12 @@ module load epcc-job-env
 #   using threading.
 export OMP_NUM_THREADS=1
 
-srun --cpu-bind=cores singularity run [* YOUR SIF IMAGE NAME *] collective/osu_gather
+# Set the LD_LIBRARY_PATH environment variable within the Singularity container
+# to ensure that it used the correct MPI libraries
+export SINGULARITYENV_LD_LIBRARY_PATH=/opt/cray/pe/mpich/8.0.16/ofi/gnu/9.1/lib-abi-mpich:/usr/lib/x86_64-linux-gnu/libibverbs:/opt/cray/pe/pmi/6.0.7/lib:/opt/cray/libfabric/1.11.0.0.233/lib64:/usr/lib64/host:/.singularity.d/libs
+
+# Set the options for the Singularity executable
+singopts="-B /opt/cray,/usr/lib64:/usr/lib64/host,/usr/lib64/tcl,/var/spool/slurmd/mpi_cray_shasta"
+
+# Launch the parallel job
+srun --cpu-bind=cores singularity run $singopts [* YOUR SIF IMAGE NAME *] collective/osu_gather
