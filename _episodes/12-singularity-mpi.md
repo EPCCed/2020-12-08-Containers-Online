@@ -46,7 +46,7 @@ In this example, the target platform is a remote HPC cluster that uses [MPICH](h
 
 Begin by creating a directory and, within that directory, downloading and saving the "tarballs" for version 5.6.3 of the OSU Micro-Benchmarks from the [OSU Micro-Benchmarks page](https://mvapich.cse.ohio-state.edu/benchmarks/) and for [MPICH version 3.3.2] from the [MPICH downloads page](https://www.mpich.org/downloads/).
 
-In the same directory, save the following [definition file content]({{site.url}}{{site.baseurl}}/files/osu_benchmarks.def) to a `.def` file, e.g. `osu_benchmarks.def`, or download the file:
+In the same directory, save the following [definition file content]({{site.url}}{{site.baseurl}}/files/osu_benchmarks.def) to a `.def` file, e.g. `osu_benchmarks.def`:
 
 ~~~
 Bootstrap: docker
