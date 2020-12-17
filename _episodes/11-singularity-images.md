@@ -108,8 +108,8 @@ Similarly to Docker and many other modern software tools, Singularity follows th
 
 There are various approaches to building Singularity images. We highlight two different approaches here and focus on one of them:
 
- - _Building within a sandbox:_ You can build a container interactively within a sandbox environment. This means you get a shell within the container environment and install and configure packages and code as you wish before exiting the sandbox and converting it into a container image.
-- _Building from a [Singularity Definition File](https://sylabs.io/guides/3.7/user-guide/build_a_container.html#creating-writable-sandbox-directories)_: This is Singularity's equivalent to building a Docker container from a `Dockerfile` and we'll discuss this approach in this section.
+ - _Building within a sandbox:_ You can build a container interactively within a [sandbox environment](https://sylabs.io/guides/3.7/user-guide/build_a_container.html#creating-writable-sandbox-directories). This means you get a shell within the container environment and install and configure packages and code as you wish before exiting the sandbox and converting it into a container image.
+- _Building from a [Singularity Definition File](https://sylabs.io/guides/3.7/user-guide/build_a_container.html#building-containers-from-singularity-definition-files)_: This is Singularity's equivalent to building a Docker container from a `Dockerfile` and we'll discuss this approach in this section.
 
 You can take a look at Singularity's "[Build a Container](https://sylabs.io/guides/3.7/user-guide/build_a_container.html)" documentation for more details on different approaches to building containers.
 
